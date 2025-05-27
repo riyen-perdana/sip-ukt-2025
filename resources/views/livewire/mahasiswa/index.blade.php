@@ -78,9 +78,88 @@
                         Riwayat Pengajuan
                     </section>
                     <hr class="h-px mb-3 bg-gray-200 border-0 dark:bg-gray-700">
-                    @foreach ($data as $item)
-                        {{ $item }}
-                    @endforeach
+                    <section class="tabel">
+                        <div class="flex flex-row text-xs gap-y-2">
+                            @if ($data)
+                                <table class="table w-full leading-normal border-none">
+                                    <th>
+                                        <tr>
+                                            <td class="text-left">Tahun</td>
+                                            <td class="font-bold text-right">{{ $data->tahun }}</td>
+                                        </tr>
+                                        <tr>
+                                            <td class="text-left">Status Pendaftaran</td>
+                                            @php
+                                                $date = date('Y-m-d');
+                                            @endphp
+                                            @if ($data->daftar_buka <= $date && $data->daftar_tutup >= $date)
+                                                <td class="font-semibold text-right text-green-500">Buka</td>
+                                            @else
+                                                <td class="font-semibold text-right text-red-500">Tutup</td>
+                                            @endif
+                                        </tr>
+                                        <tr>
+                                            <td class="text-left">Status Pengajuan</td>
+                                            @if (!$data->status)
+                                                <td class="font-semibold text-right text-red-500">
+                                                    Belum Mengajukan
+                                                </td>
+                                            @elseif ($data->status == 'ajk')
+                                                <td class="font-semibold text-right text-yellow-500">
+                                                    Diajukan
+                                                </td>
+                                            @else
+                                                <td class="font-semibold text-right text-green-500">
+                                                    Diterima
+                                                </td>
+                                            @endif
+                                        </tr>
+                                        <tr>
+                                            <td class="text-left">Tanggal Pengajuan</td>
+                                            <td class="font-semibold text-right">
+                                                @if ($data->tgl_pengajuan)
+                                                    {{ tgl_indo($data->tgl_pengajuan) }}
+                                                @else
+                                                    -
+                                                @endif
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td class="text-left"></td>
+                                            <td class="pt-2 font-semibold text-right">
+                                                @if ($data->daftar_buka <= $date && $data->daftar_tutup >= $date)
+                                                    <x-link-button
+                                                        class="bg-sky-500 ms-1 hover:bg-sky-400 focus:bg-sky-400 active:bg-sky-400"
+                                                        :href="route('pengajuan.index')" wire:navigate>
+                                                        <svg xmlns="http://www.w3.org/2000/svg" fill="none"
+                                                            viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"
+                                                            class="w-3.5 h-3.5 me-2">
+                                                            <path stroke-linecap="round" stroke-linejoin="round"
+                                                                d="M6.429 9.75 2.25 12l4.179 2.25m0-4.5 5.571 3 5.571-3m-11.142 0L2.25 7.5 12 2.25l9.75 5.25-4.179 2.25m0 0L21.75 12l-4.179 2.25m0 0 4.179 2.25L12 21.75 2.25 16.5l4.179-2.25m11.142 0-5.571 3-5.571-3" />
+                                                        </svg>
+                                                        {{ __('Klik Disini Untuk Mengajukan') }}
+                                                    </x-link-button>
+                                                @else
+                                                    <x-link-button
+                                                        class="bg-red-500 cursor-not-allowed pointer-events-none ms-1 hover:bg-red-400 focus:bg-red-400 active:bg-red-400"
+                                                        :href="route('dashboard')" wire:navigate>
+                                                        <svg xmlns="http://www.w3.org/2000/svg" fill="none"
+                                                            viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"
+                                                            class="w-3.5 h-3.5 me-2">
+                                                            <path stroke-linecap="round" stroke-linejoin="round"
+                                                                d="M6.429 9.75 2.25 12l4.179 2.25m0-4.5 5.571 3 5.571-3m-11.142 0L2.25 7.5 12 2.25l9.75 5.25-4.179 2.25m0 0L21.75 12l-4.179 2.25m0 0 4.179 2.25L12 21.75 2.25 16.5l4.179-2.25m11.142 0-5.571 3-5.571-3" />
+                                                        </svg>
+                                                        {{ __('Pendaftaran Ditutup') }}
+                                                    </x-link-button>
+                                                @endif
+                                        </tr>
+                                    </th>
+                                </table>
+                            @else
+                                Data Tidak Ada
+                            @endif
+                        </div>
+                    </section>
                 </div>
             </section>
         </div>

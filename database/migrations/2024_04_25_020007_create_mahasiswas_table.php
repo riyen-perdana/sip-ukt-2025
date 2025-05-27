@@ -19,7 +19,8 @@ return new class extends Migration
             $table->string('prodi_id')->comment('ID Prodi');
             $table->integer('ukt')->comment('Grade UKT');
             $table->bigInteger('jml_ukt_awal')->comment('Jumlah UKT');
-            $table->bigInteger('jml_ukt_turun')->comment('Jumlah UKT Penurunan');
+            // $table->bigInteger('jml_ukt_turun')->comment('Jumlah UKT Penurunan');
+            $table->text('jml_ukt_turun')->nullable()->comment('Jumlah UKT Penurunan');
             $table->integer('semester')->comment('Semester Mahasiswa');
             $table->date('tgl_lhr')->comment('Tanggal Lahir Mahasiswa');
             $table->string('tpt_lhr')->comment('Tempat Lahir Mahasiswa');

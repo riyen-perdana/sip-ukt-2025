@@ -21,11 +21,12 @@
                         </x-link-button>
                     </section>
                     <section class="pendaftaran">
+                        <p class="italic text-xs text-red-500 px-6 font-semibold">Isian dengan tanda asterik (*) wajib diisi</p>
                         <form class="w-full px-6 pt-6 pb-4 mb-4 bg-white rounded" wire:submit="save">
                             @csrf
                             <div class="grid grid-cols-1 gap-4 mb-4 md:grid-cols-2">
                                 <div x-data x-init="$refs.no_wa_mhs.focus()">
-                                    <x-input-label for="no_wa_mhs" :value="__('Nomor Whatsapp Aktif Mahasiswa*')"
+                                    <x-input-label for="no_wa_mhs" :value="__('Nomor Whatsapp Aktif Mahasiswa *')"
                                         class="mb-2 text-xs font-semibold" />
                                     <x-text-input x-ref="no_wa_mhs" wire:model.live="no_wa_mhs" id="no_wa_mhs"
                                         class="w-full px-3 py-2 text-xs leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline"
@@ -34,7 +35,7 @@
                                     <x-input-error :messages="$errors->get('no_wa_mhs')" class="mt-1" />
                                 </div>
                                 <div>
-                                    <x-input-label for="no_wa_ortu" :value="__('Nomor Whatsapp Aktif Orang Tua/Wali Mahasiswa*')"
+                                    <x-input-label for="no_wa_ortu" :value="__('Nomor Whatsapp Aktif Orang Tua/Wali Mahasiswa *')"
                                         class="mb-2 text-xs font-semibold" />
                                     <x-text-input wire:model.live="no_wa_ortu" id="no_wa_ortu"
                                         class="w-full px-3 py-2 text-xs leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline"
@@ -45,8 +46,8 @@
                             </div>
                             <div class="grid grid-cols-1 gap-4 mb-2 md:grid-cols-1 lg:grid-cols-2">
                                 <div>
-                                    <x-input-label for="surper_mhs" :value="__('Surat Permohonan Penyesuaian UKT Mahasiswa Kepada Dekan Fakultas')" class="text-xs font-semibold" />
-                                    <p class="mb-1 text-xs text-black-500">Format PDF dengan Kapasitas Maksimal 500Kb
+                                    <x-input-label for="surper_mhs" :value="__('Surat Permohonan Penyesuaian UKT Mahasiswa Kepada Dekan Fakultas *')" class="text-xs font-semibold" />
+                                    <p class="mb-1 text-xs text-black-500">Format PDF dengan Kapasitas Maksimal 500Kb <a href="https://docs.google.com/document/d/1JAQn5UXpdo_QOq3txrdnTSo4cbw_Vkub/edit?usp=sharing&ouid=103428335033835886100&rtpof=true&sd=true" class="text-red-500" target="_blank">[Unduh Format Surat]</a>  
                                     </p>
                                     <x-text-input wire:model.live="surper_mhs" id="surper_mhs"
                                         class="w-full px-3 py-2 mb-1 text-xs leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline"
@@ -66,7 +67,7 @@
                                     @endif
                                 </div>
                                 <div>
-                                    <x-input-label for="kk_mhs" :value="__('Scan Asli Kartu Keluarga Mahasiswa')" class="text-xs font-semibold" />
+                                    <x-input-label for="kk_mhs" :value="__('Scan Asli Kartu Keluarga Mahasiswa *')" class="text-xs font-semibold" />
                                     <p class="mb-1 text-xs text-black-500">Format PDF dengan Kapasitas Maksimal 500Kb
                                     </p>
                                     <x-text-input wire:model="kk_mhs" id="kk_mhs"
@@ -90,7 +91,7 @@
                             </div>
                             <div class="grid grid-cols-1 gap-4 mb-2 md:grid-cols-1 lg:grid-cols-2">
                                 <div>
-                                    <x-input-label for="ktp_ortu_mhs" :value="__('Scan Asli Kartu Tanda Penduduk Orang Tua')" class="text-xs font-semibold" />
+                                    <x-input-label for="ktp_ortu_mhs" :value="__('Scan Asli Kartu Tanda Penduduk Orang Tua *')" class="text-xs font-semibold" />
                                     <p class="mb-1 text-xs text-black-500">Format PDF dengan Kapasitas Maksimal 500Kb
                                     </p>
                                     <x-text-input wire:model="ktp_ortu_mhs" id="ktp_ortu_mhs"
@@ -111,7 +112,7 @@
                                     @endif
                                 </div>
                                 <div>
-                                    <x-input-label for="gjortu_mhs" :value="__('Scan Asli slip gaji orang tua/SKTM dari Lurah setempat')" class="text-xs font-semibold" />
+                                    <x-input-label for="gjortu_mhs" :value="__('Scan Asli slip gaji orang tua/SKTM dari Lurah setempat *')" class="text-xs font-semibold" />
                                     <p class="mb-1 text-xs text-black-500">Format PDF dengan Kapasitas Maksimal 500Kb
                                     </p>
                                     <x-text-input wire:model="gjortu_mhs" id="gjortu_mhs"
@@ -133,7 +134,8 @@
                                     @endif
                                 </div>
                             </div>
-                            <div class="mb-2">
+                            <!-- Perubahan Rapat Pimpinan : Rekening Listrik Dihapus -->
+                            {{-- <div class="mb-2">
                                 <div>
                                     <x-input-label for="rknlstrk_mhs" :value="__(
                                         'Scan asli rekening listrik 2 bulan terakhir bagi pelanggan PLN Pasca bayar, bagi pelanggan PLN Pulsa, diganti dengan Surat Pernyataan Pengeluaran Biaya Listrik Selama 2 bulan terakhir yang ditandatangani oleh Kepala Keluarga dan diketahui oleh Lurah setempat',
@@ -160,11 +162,11 @@
                                         </x-primary-button>
                                     @endif
                                 </div>
-                            </div>
+                            </div> --}}
                             <div class="mb-2">
                                 <div>
                                     <x-input-label for="surkk_mhs" :value="__(
-                                        'Scan asli Surat Kematian orang tua/wali yang berada dalam satu KK dengan mahasiswa/Surat Keterangan dari rumah sakit bagi orang tua/wali yang sakit permanen yang berada dalam satu KK dengan mahasiswa/Surat keterangan PHK dari perusahaan bagi orang tua/wali yang berada dalam satu KK dengan mahasiswa/Surat keterangan usaha orang tua/wali pailit dan berada dalam satu KK dengan mahasiswa dari Lurah setempat',
+                                        'Scan asli Surat Kematian orang tua/wali yang berada dalam satu KK dengan mahasiswa/Surat Keterangan dari rumah sakit bagi orang tua/wali yang sakit permanen yang berada dalam satu KK dengan mahasiswa/Surat keterangan PHK dari perusahaan bagi orang tua/wali yang berada dalam satu KK dengan mahasiswa/Surat keterangan usaha orang tua/wali pailit dan berada dalam satu KK dengan mahasiswa dari Lurah setempat *',
                                     )" class="text-xs font-semibold" />
                                     <p class="mb-1 text-xs text-black-500">Format PDF dengan Kapasitas Maksimal 500Kb
                                     </p>
@@ -188,7 +190,8 @@
                                     @endif
                                 </div>
                             </div>
-                            <div class="grid grid-cols-1 gap-4 mb-2 md:grid-cols-1 lg:grid-cols-2">
+                            <!-- Perubahan Rapat Pimpinan : Foto Rumah Orang Tua/Wali Dihapus -->
+                            {{-- <div class="grid grid-cols-1 gap-4 mb-2 md:grid-cols-1 lg:grid-cols-2">
                                 <div>
                                     <x-input-label for="ft_ruangtamu" :value="__('Foto Ruang Tamu Rumah Orang Tua/Wali')"
                                         class="text-xs font-semibold" />
@@ -329,11 +332,33 @@
                                         </x-primary-button>
                                     @endif
                                 </div>
-                            </div>
+                            </div> --}}
                             <div class="grid grid-cols-1 gap-4 mb-2 md:grid-cols-1 lg:grid-cols-2">
                                 <div>
-                                    <x-input-label for="spkd" :value="__('Surat Pernyataan Kebenaran Data')" class="text-xs font-semibold" />
-                                    <p class="mb-1 text-xs text-black-500">Format PDF dengan Kapasitas Maksimal 500Kb
+                                    <x-input-label for="sk_tdkbs" :value="__('Surat Keterangan Tidak Sedang Menerima Beasiswa *')" class="text-xs font-semibold" />
+                                    <p class="mb-1 text-xs text-black-500">Format PDF dengan Kapasitas Maksimal 500Kb <a href="https://docs.google.com/document/d/1XOH4_QuLt2hEoWsAD2T1yHInI6ZEwFIQ/edit?usp=sharing&ouid=103428335033835886100&rtpof=true&sd=true" class="text-red-500" target="_blank">[Unduh Format Surat]</a>  
+                                    </p>
+                                    <x-text-input wire:model="sk_tdkbs" id="sk_tdkbs"
+                                        class="w-full px-3 py-2 mb-1 text-xs leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline"
+                                        type="file" required />
+                                    <x-input-error :messages="$errors->get('sk_tdkbs')" class="mt-0" />
+                                    @if ($sk_tdkbs && !$errors->get('sk_tdkbs'))
+                                        <x-primary-button x-data=""
+                                            x-on:click.prevent="$dispatch('viewData',{view:'{{ $sk_tdkbs->temporaryUrl() }}'})"
+                                            wire:loading.attr="disabled" wire:ignore.self>
+                                            <svg xmlns="http://www.w3.org/2000/svg" fill="none"
+                                                viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"
+                                                class="w-5 h-5 me-2">
+                                                <path stroke-linecap="round" stroke-linejoin="round"
+                                                    d="m15.75 15.75-2.489-2.489m0 0a3.375 3.375 0 1 0-4.773-4.773 3.375 3.375 0 0 0 4.774 4.774ZM21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
+                                            </svg>
+                                            {{ __('Lihat Berkas') }}
+                                        </x-primary-button>
+                                    @endif
+                                </div>
+                                <div>
+                                    <x-input-label for="spkd" :value="__('Surat Pernyataan Kebenaran Data *')" class="text-xs font-semibold" />
+                                    <p class="mb-1 text-xs text-black-500">Format PDF dengan Kapasitas Maksimal 500Kb <a href="https://docs.google.com/document/d/1oy30fXMT-qrc4NyohZmwabTjUpqII9xE/edit?usp=sharing&ouid=103428335033835886100&rtpof=true&sd=true" class="text-red-500" target="_blank">[Unduh Format Surat]</a>  
                                     </p>
                                     <x-text-input wire:model="spkd" id="spkd"
                                         class="w-full px-3 py-2 mb-1 text-xs leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline"

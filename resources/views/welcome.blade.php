@@ -63,12 +63,12 @@
             <div class="flex flex-col justify-center p-5 gap-y-5">
                 <div class="flex flex-col gap-y-3">
                     <h1 class="text-indigo-950 font-['Clash_Display'] text-3xl leading-nomal">
-                        Penyesuaian UKT Universitas Islam Negeri Sultan Syarif Kasim Riau Tahun Akademik 2024/2025
+                        Penyesuaian UKT Universitas Islam Negeri Sultan Syarif Kasim Riau Tahun Akademik 2025/2026
                         Semester Ganjil
                     </h1>
                     <p class="text-sm leading-normal text-gray-500">
                         Surat Keputusan Rektor Tentang Penyesuaian UKT<br>
-                        TA. 2024/2025, Silahkan klik link di bawah
+                        Silahkan klik link di bawah
                     </p>
                 </div>
                 <div class="flex flex-row gap-x-5">
@@ -99,39 +99,38 @@
                 @php echo date("Y")-1 @endphp/@php echo date("Y") @endphp dan tidak sedang menerima beasiswa.
             </li>
             <li>
-                Pengajuan Penyesuaian UKT Tahun 2024 dilakukan secara online melalui portal
-                https://sip-ukt.uin-suska.ac.id dengan login menggunakan akun iRaise.
+                Pengajuan Penyesuaian UKT Tahun @php echo date("Y") @endphp dilakukan secara online melalui portal
+                <a href="https://sip-ukt.uin-suska.ac.id" class="text-red-500 hover:text-indigo-500">https://sip-ukt.uin-suska.ac.id</a> dengan login menggunakan akun iRaise.
             </li>
             <li>
                 Mahasiswa mengupload file-file sebagai berikut :
                 <ul class="list-disc list-uutside ps-3">
                     <li>
-                        Surat Permohonan Penyesuaian UKT dari orang tua/wali mahasiswa ditujukan kepada Dekan Fakultas
-                        yang bersangkutan <a class="text-red-500 hover:text-indigo-500 hover:font-semibold" href="https://docs.google.com/document/d/1f0MF4qyffF7BjWmJTyOiRvykf19zGgnT/edit?usp=drive_link&ouid=103428335033835886100&rtpof=true&sd=true" target="_blank">[Format Terlampir]</a>.
+                        Surat Permohonan Penyesuaian UKT dari mahasiswa yang diketahui oleh orang tua/wali ditujukan kepada Dekan Fakultas yang bersangkutan <a class="text-red-500 hover:text-indigo-500" href="https://docs.google.com/document/d/1f0MF4qyffF7BjWmJTyOiRvykf19zGgnT/edit?usp=drive_link&ouid=103428335033835886100&rtpof=true&sd=true" target="_blank">[Format Terlampir]</a>.
                     </li>
                     <li>
-                        Scan Kartu Keluarga (KK) Asli dan KTP Orang Tua.
+                        Scan Kartu Keluarga (KK) Asli dan KTP Orang Tua/Wali.
                     </li>
-                    <li>
+                    {{-- <li>
                         Scan asli rekening listrik 2 (Dua) bulan terakhir bagi pelanggan PLN Pasca bayar. Adapun bagi
                         pelanggan PLN Pra bayar (Pulsa), Scan rekening listrik diganti dengan Surat Pernyataan
                         Pengeluaran Biaya Listrik Selama 2 (dua) bulan terakhir yang ditandatangani oleh Kepala Keluarga
                         dan diketahui oleh Lurah setempat.
+                    </li> --}}
+                    <li>
+                        Scan asli slip gaji orang tua/Surat Keterangan Penghasilan Kurang Mampu dari Kepala Desa/Lurah setempat.
                     </li>
                     <li>
-                        Scan asli slip gaji orang tua/Surat Keterangan Penghasilan Kurang Mampu dari Lurah setempat.
-                    </li>
-                    <li>
-                        Scan asli Surat Kematian orang tua/wali yang berada dalam satu KK dengan mahasiswa/Surat
+                        Scan asli Surat Kematian orang tua/wali yang berada dalam satu KK dengan mahasiswa atau Surat
                         Keterangan dari rumah sakit bagi orang tua/wali yang sakit permanen yang berada dalam satu KK
-                        dengan mahasiswa/Surat keterangan PHK dari perusahaan bagi orang tua/wali yang berada dalam satu
-                        KK dengan mahasiswa/Surat keterangan usaha orang tua/wali pailit dan berada dalam satu KK dengan
-                        mahasiswa dari Lurah setempat.
+                        dengan mahasiswa atau Surat keterangan PHK dari perusahaan bagi orang tua/wali yang berada dalam satu
+                        KK dengan mahasiswa atau Surat keterangan usaha orang tua/wali pailit dan berada dalam satu KK dengan
+                        mahasiswa dari Kepala Desa/Lurah setempat.
                     </li>
-                    <li>
+                    {{-- <li>
                         Foto rumah yang terdiri dari ruang tamu, kamar tidur, ruang keluarga, dapur, depan rumah yang
                         menampakan keseluruhan sisi depan
-                    </li>
+                    </li> --}}
                     <li>
                         Surat pernyataan tidak sedang menerima beasiswa dari pihak manapun <a class="text-red-500 hover:text-indigo-500 hover:font-semibold" href="https://docs.google.com/document/d/1gcgH492EqYSWZ72pM0GBWlYHG7p1y6LS/edit?usp=sharing&ouid=103428335033835886100&rtpof=true&sd=true" target="_blank">[Format Terlampir]</a>.
                     </li>
@@ -152,7 +151,7 @@
                     Mandiri, Jalur Pascasarjana, Jalur Mahasiswa Luar Negeri, Jalur Mahasiswa Transfer</strong> dan yang <strong>sedang menerima beasiswa dari pihak manapun</strong>.
             </li>
             <li>
-                Mahasiswa yang bisa mengajukan Penyesuaian UKT Minimal berada di Semester II (dua).
+                Mahasiswa yang bisa mengajukan Penyesuaian UKT Minimal berada di Semester III (tiga).
             </li>
             <li>
                 Apabila ada ditemukan ketidaksesuaian antara dokumen yang diunggah oleh mahasiswa yang mengikuti pengajuan penyesuaian UKT dengan fakta sebenarnya dilapangan, maka mahasiswa
@@ -184,7 +183,7 @@
                             </svg>
                             <div class="flex flex-col">
                                 <h3 class="text-xl font-bold">
-                                    27 Mei 2024
+                                    29 Mei 2025
                                 </h3>
                                 <p class="text-sm leading-none text-gray-500">
                                     Pengumuman Pembukaan Pendaftaran
@@ -203,7 +202,7 @@
                             </svg>
                             <div class="flex flex-col">
                                 <h3 class="text-xl font-bold">
-                                    28 Mei - 10 Juni 2024
+                                    01 Juni - 10 Juni 2025
                                 </h3>
                                 <p class="text-sm leading-none text-gray-500">
                                     Pengajuan Dokumen Secara Online
@@ -222,7 +221,7 @@
                             </svg>
                             <div class="flex flex-col">
                                 <h3 class="text-xl font-bold">
-                                    28 Mei - 13 Juni 2024
+                                    01 Juni - 13 Juni 2025
                                 </h3>
                                 <p class="text-sm leading-none text-gray-500">
                                     Verifikasi Dokumen Oleh Fakultas
@@ -241,7 +240,7 @@
                             </svg>
                             <div class="flex flex-col">
                                 <h3 class="text-xl font-bold">
-                                    18 Juni 2024
+                                    19 Juni 2025
                                 </h3>
                                 <p class="text-sm leading-none text-gray-500">
                                     Pengumuman
@@ -259,7 +258,7 @@
                 <div class="flex flex-row items-center gap-x-3">
                     <img src="{{ asset('assets/images/logo.png') }}" alt="" class="h-[60px]">
                     <div class="flex flex-col gap-y-1">
-                        <h3 class="text-xl leading-none text-white md:text-2xl">Bagian Keuangan Rektorat</h3>
+                        <h3 class="text-xl leading-none text-white md:text-2xl">Pusat Teknologi Informasi dan Pangkalan Data - PTIPD</h3>
                         <h4 class="text-xs leading-normal text-white md:text-sm">Universitas Islam Negeri Sultan Syarif Kasim Riau
                         </h4>
                     </div>
@@ -268,11 +267,12 @@
                     Jl. H.R. Soebrantas KM. 15 No. 155<br>
                     Kec. Tuah Madani - Pekanbaru - Riau<br>
                     Kode POS 28298 PO Box. 1004<br>
+                    CP : 081236656519<br>
                 </p>
             </div>
         </div>
         <div class="max-w-6xl mx-auto text-center text-[#8D90A8] text-sm pt-6 pb-10 px-10">
-            All Rights Reserved • Copyright by Bagian Keuangan Rektorat Universitas Islam Negeri Sultan Syarif Kasim
+            All Rights Reserved • Copyright by Pusat Teknologi Informasi dan Pangkalan Data Universitas Islam Negeri Sultan Syarif Kasim
             Riau
         </div>
     </section>
