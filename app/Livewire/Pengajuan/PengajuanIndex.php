@@ -168,6 +168,7 @@ class PengajuanIndex extends Component
 
         } catch (\Throwable $th) {
             DB::rollBack();
+            throw $th;
             $this->dispatch('sweet-alert', icon: 'danger', title: 'Data Anda Gagal Disimpan');
 
         }

@@ -55,7 +55,7 @@ class LoginMahasiswaForm extends Form
 
                 if ($response['success'] == true) {
                     //Cek Dahulu Semester Mahasiswa
-                    if ($response['data']['user']['semester'] < 2) {
+                    if ($response['data']['user']['semester'] < 3) {
                         throw ValidationException::withMessages([
                             session()->flash('status', 'Kriteria Pendaftaran Tidak Sesuai, Minimal Semester 2')
                         ]);
@@ -133,6 +133,10 @@ class LoginMahasiswaForm extends Form
                 }
             }
         }
+        // } else {
+        //     dd('Login Berhasil');
+        //     exit();
+        // }
 
         RateLimiter::hit($this->throttleKey());
     }

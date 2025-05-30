@@ -66,5 +66,6 @@ class Kernel extends HttpKernel
         'isdaftar' => \App\Http\Middleware\CheckPendaftaranMiddleware::class,
         'checkisdaftar' => \App\Http\Middleware\CheckIsDaftar::class,
         'ceklevel' => \App\Http\Middleware\CekLevel::class,
+        'checkislulus' => \App\Http\Middleware\CheckIsLulus::class,
     ];
 }

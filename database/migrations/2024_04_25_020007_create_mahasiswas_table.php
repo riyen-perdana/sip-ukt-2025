@@ -24,7 +24,8 @@ return new class extends Migration
             $table->integer('semester')->comment('Semester Mahasiswa');
             $table->date('tgl_lhr')->comment('Tanggal Lahir Mahasiswa');
             $table->string('tpt_lhr')->comment('Tempat Lahir Mahasiswa');
-            $table->string('foto')->comment('Link Foto Mahasiswa');
+            // $table->string('foto')->comment('Link Foto Mahasiswa');
+            $table->string('foto')->comment('Link Foto Mahasiswa')->nullable();
             $table->rememberToken();
             $table->timestamps();
         });

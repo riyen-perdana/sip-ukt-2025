@@ -53,7 +53,7 @@ Route::get('/beasiswa', BeasiswaIndex::class)
     ->name('beasiswa.index');
 
 Route::get('/pendaftaran', PengajuanIndex::class)
-    ->middleware(['auth:mahasiswa','isdaftar','checkisdaftar'])
+    ->middleware(['auth:mahasiswa','isdaftar','checkisdaftar','checkislulus'])
     ->name('pengajuan.index');
 
 Route::get('/pendaftar', PendaftarIndex::class)

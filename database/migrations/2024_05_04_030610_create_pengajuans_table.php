@@ -15,7 +15,7 @@ return new class extends Migration
             $table->uuid('id')->primary();
             $table->string('mahasiswa_id')->comment('UUID Mahasiswa');
             $table->string('no_pengajuan')->comment('Nomor Pengajuan');
-            $table->string('no_wa_mhs')->comment('Nomor Whatsapp Mahasiswa')->nullable();
+            $table->string('no_wa_mhs')->comment('Nomor Whatsapp Mahasiswa');
             $table->string('no_wa_ortu')->comment('Nomor Whatsapp Orang Tua Mahasiswa');
             $table->string('surper_mhs')->comment('Surat Permohonan Mahasiswa');
             $table->string('kk_mhs')->comment('Kartu Keluarga Mahasiswa');

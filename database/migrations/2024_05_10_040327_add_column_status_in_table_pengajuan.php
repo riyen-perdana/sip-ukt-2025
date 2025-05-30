@@ -12,7 +12,7 @@ return new class extends Migration
     public function up(): void
     {
         Schema::table('pengajuan', function (Blueprint $table) {
-            $table->enum('status',['ajk','prs'])->after('sk_tdkbs')->comment('Status Pengajuan Mahasiswa')->default('ajk');
+            $table->enum('status',['ajk','prs','vrf'])->after('sk_tdkbs')->comment('Status Pengajuan Mahasiswa')->default('ajk');
         });
     }
 
