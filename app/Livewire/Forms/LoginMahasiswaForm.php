@@ -19,8 +19,11 @@ use Illuminate\Support\Facades\Session;
 class LoginMahasiswaForm extends Form
 {
 
+    #[Validate('required', message: 'Username Wajib Diisi')]
+    #[Validate('numeric', message: 'Username Harus Angka')]
     public string $nim = '';
 
+    #[Validate('required', message: 'Password Wajib Diisi')]
     public string $password = '';
 
     public bool $remember = false;
@@ -31,79 +34,76 @@ class LoginMahasiswaForm extends Form
 
         $array = [7, 9, 11, 14, 12, 16, 17, 20, 21];
 
-        //Fungsi Login Mahasiswa
-        if (!Auth::guard('mahasiswa')->attempt($this->only(['nim', 'password']), $this->remember)) {
+        // Validasi Input 
+        $this->validate();
 
-            // Cek Jadwal Apakah Masih Aktif ?
-            $tgl = now()->format('Y-m-d');
-            $jadwal = Jadwal::where('is_aktif', 'Y')
-                ->where('daftar_buka', '<=', $tgl)
-                ->where('daftar_tutup', '>=', $tgl)
-                ->first();
+        // Cek apakah Jadwal Pendaftaran Aktif
+        $tgl = now()->format('Y-m-d');
+        $jadwal = Jadwal::where('is_aktif', 'Y')
+            ->where('daftar_buka', '<=', $tgl)
+            ->where('daftar_tutup', '>=', $tgl)
+            ->first();
 
-            if (!$jadwal) {
-                $this->reset(['nim', 'password', 'remember']);
-                throw ValidationException::withMessages([
-                    session()->flash('status', 'Jadwal Pendaftaran Belum Dibuka')
-                ]);
-            } else {
-                //Data Mahasiswa Tidak Ada Ditabel, Cari Data dari API
-                $response = Http::post('https://api-iraise.uin-suska.ac.id/login', [
-                    'username' => $this->nim,
-                    'password' => $this->password,
-                ])->json();
+        if (!$jadwal) {
+            $this->reset(['nim', 'password', 'remember']);
+            throw ValidationException::withMessages([
+                session()->flash('status', 'Jadwal Pendaftaran Belum Dibuka')
+            ]);
+        } else {
 
-                if ($response['success'] == true) {
-                    //Cek Dahulu Semester Mahasiswa
-                    if ($response['data']['user']['semester'] < 3) {
+            //Get Data Login Mahasiswa Dari API
+            $response = Http::post('https://api-iraise.uin-suska.ac.id/login', [
+                'username' => $this->nim,
+                'password' => $this->password,
+            ])->json();
+
+            if ($response['success'] == true) {
+                // Cek Jalur Masuk
+                $jm = $response['data']['ukt']['id_jalur_masuk'];
+                if (in_array($jm, $array)) {
+                    throw ValidationException::withMessages([
+                        session()->flash('status', 'Kriteria Pendaftaran Tidak Sesuai, Jalur Masuk Salah')
+                    ]);
+                } else {
+                    // Cek UKT Mahasiswa
+                    $ukt = intval($response['data']['ukt']['kelompok_ukt_final']);
+                    if ($ukt < 5) {
                         throw ValidationException::withMessages([
-                            session()->flash('status', 'Kriteria Pendaftaran Tidak Sesuai, Minimal Semester 2')
+                            session()->flash('status', 'Kriteria Pendaftaran Tidak Sesuai, Minimal UKT 5')
                         ]);
                     } else {
-                        //Cek UKT
-                        $ukt = intval($response['data']['ukt']['kelompok_ukt_final']);
-                        if ($ukt < 5) {
+                        // Cek Data Beasiswa
+                        $bs = Beasiswa::where('nim', $this->nim)->first();
+                        if ($bs) {
                             throw ValidationException::withMessages([
-                                session()->flash('status', 'Kriteria Pendaftaran Tidak Sesuai, Minimal UKT 5')
+                                session()->flash('status', 'Kriteria Pendaftaran Tidak Sesuai, Penerima Beasiswa')
                             ]);
                         } else {
-                            //Cek Data Beasiswa
-                            $bs = Beasiswa::where('nim', $this->nim)->first();
-                            if ($bs) {
+                            // Cek Semester Mahasiswa
+                            if ($response['data']['user']['semester'] < 3) {
                                 throw ValidationException::withMessages([
-                                    session()->flash('status', 'Kriteria Pendaftaran Tidak Sesuai, Penerima Beasiswa')
+                                    session()->flash('status', 'Kriteria Pendaftaran Tidak Sesuai, Minimal Semester 3')
                                 ]);
                             } else {
-                                // Cek Jalur Masuk
-                                $jm = $response['data']['ukt']['id_jalur_masuk'];
-                                if (in_array($jm, $array)) {
-                                    throw ValidationException::withMessages([
-                                        session()->flash('status', 'Kriteria Pendaftaran Tidak Sesuai, Jalur Masuk Salah')
-                                    ]);
+
+                                // Semua Kriteria Terpenuhi, Lakukan Simpan Data Login
+                                $mhs = Mahasiswa::where('nim', $this->nim)->first();
+
+                                if ($mhs) {
+                                    $mahasiswa = Mahasiswa::findOrFail($mhs->id);
+                                    $mahasiswa->password = bcrypt($this->password);
+                                    $mahasiswa->semester = $response['data']['user']['semester'];
+                                    $mahasiswa->foto     = $response['data']['user']['foto_profil'];
+                                    $mahasiswa->jml_ukt_turun = json_encode($response['data']['ukt_minus'], JSON_PRETTY_PRINT);
+                                    $mahasiswa->update();
+
+                                    Auth::guard('mahasiswa')->attempt($this->only(['nim', 'password']), $this->remember);
+
                                 } else {
-
-                                    //Semus Kriteria Tidak Terpenuhi, Kemungkinan
-                                    //Lupa Password, Cek Data Mahasiswa
-
-                                    $mhs = Mahasiswa::where('nim', $this->nim)->first();
-
-                                    if ($mhs) {
-                                        //Jika Data Mahasiswa Ada, Lakukan Update Data
-                                        $mahasiswa = Mahasiswa::findOrFail($mhs->id);
-                                        $mahasiswa->password = $this->password;
-                                        $mahasiswa->semester = $response['data']['user']['semester'];
-                                        $mahasiswa->foto     = $response['data']['user']['foto_profil'];
-                                        $mahasiswa->update();
-                                    } else {
-                                        //Data Mahasiswa Tidak Ada
-                                        //Masukkan Ke Database
-                                        $prodi = Prodi::where([['abbr_prodi', trim($response['data']['user']['regpd_id_sms'])], ['is_aktif', 'Y']])->first();
-
-                                        if (empty($prodi)) {
-                                            throw ValidationException::withMessages([
-                                                session()->flash('status', 'Error 500 : Kode Prodi Tidak Ditemukan')
-                                            ]);
-                                        }
+                                    //Data Mahasiswa Tidak Ada
+                                    //Masukkan Ke Database
+                                    $prodi = Prodi::where([['abbr_prodi', trim($response['data']['user']['regpd_id_sms'])], ['is_aktif', 'Y']])->first();
+                                    if ($prodi) {
 
                                         Mahasiswa::create([
                                             'nim' => $this->nim,
@@ -120,24 +120,18 @@ class LoginMahasiswaForm extends Form
                                         ]);
 
                                         Auth::guard('mahasiswa')->attempt($this->only(['nim', 'password']), $this->remember);
+                                    } else {
+                                        throw ValidationException::withMessages([
+                                            session()->flash('status', 'Error 500 : Kode Prodi Tidak Ditemukan')
+                                        ]);
                                     }
                                 }
                             }
                         }
                     }
-                } else {
-                    //Login Failed
-                    throw ValidationException::withMessages([
-                        session()->flash('status', 'Username atau Password Salah')
-                    ]);
                 }
             }
         }
-        // } else {
-        //     dd('Login Berhasil');
-        //     exit();
-        // }
-
         RateLimiter::hit($this->throttleKey());
     }
 
