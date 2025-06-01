@@ -74,12 +74,12 @@ class Pengajuan extends Model
         );
     }
 
-    protected function rknlstrkMhs() : Attribute
-    {
-        return Attribute::make(
-            get: fn (string $value) => url('/storage/files/' .$value)
-        );
-    }
+    // protected function rknlstrkMhs() : Attribute
+    // {
+    //     return Attribute::make(
+    //         get: fn (string $value) => url('/storage/files/' .$value)
+    //     );
+    // }
 
     protected function gjortuMhs() : Attribute
     {
@@ -95,40 +95,40 @@ class Pengajuan extends Model
         );
     }
 
-    protected function ftRuangtamu() : Attribute
-    {
-        return Attribute::make(
-            get: fn (string $value) => url('/storage/files/' .$value)
-        );
-    }
+    // protected function ftRuangtamu() : Attribute
+    // {
+    //     return Attribute::make(
+    //         get: fn (string $value) => url('/storage/files/' .$value)
+    //     );
+    // }
 
-    protected function ftKamartdr() : Attribute
-    {
-        return Attribute::make(
-            get: fn (string $value) => url('/storage/files/' .$value)
-        );
-    }
+    // protected function ftKamartdr() : Attribute
+    // {
+    //     return Attribute::make(
+    //         get: fn (string $value) => url('/storage/files/' .$value)
+    //     );
+    // }
 
-    protected function ftRuangklrg() : Attribute
-    {
-        return Attribute::make(
-            get: fn (string $value) => url('/storage/files/' .$value)
-        );
-    }
+    // protected function ftRuangklrg() : Attribute
+    // {
+    //     return Attribute::make(
+    //         get: fn (string $value) => url('/storage/files/' .$value)
+    //     );
+    // }
 
-    protected function ftDapur() : Attribute
-    {
-        return Attribute::make(
-            get: fn (string $value) => url('/storage/files/' .$value)
-        );
-    }
+    // protected function ftDapur() : Attribute
+    // {
+    //     return Attribute::make(
+    //         get: fn (string $value) => url('/storage/files/' .$value)
+    //     );
+    // }
 
-    protected function ftDpnrumah() : Attribute
-    {
-        return Attribute::make(
-            get: fn (string $value) => url('/storage/files/' .$value)
-        );
-    }
+    // protected function ftDpnrumah() : Attribute
+    // {
+    //     return Attribute::make(
+    //         get: fn (string $value) => url('/storage/files/' .$value)
+    //     );
+    // }
 
     protected function skTdkbs() : Attribute
     {

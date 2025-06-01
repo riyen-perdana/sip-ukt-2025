@@ -16,7 +16,9 @@ class Verifikasi extends Model
         'pengajuan_id',
         'user_id',
         'is_setuju',
-        'komentar'
+        'komentar',
+        'kelompok_ukt',
+        'besaran_ukt'
     ];
 
     public $keyType = 'string';
