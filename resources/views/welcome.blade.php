@@ -72,9 +72,8 @@
                     </p>
                 </div>
                 <div class="flex flex-row gap-x-5">
-                    <a href="#"
-                        class="py-2 text-sm font-semibold text-white rounded-full bg-violet-950 px-7 hover:bg-indigo-700">Surat
-                        Keputusan Rektor UIN SUSKA Riau</a>
+                    <a href="https://drive.google.com/file/d/11uFApMr-kXjttK59b5FnK_ZCUiHtwrqS/view?usp=sharing" target="_blank"
+                        class="py-2 text-sm font-semibold text-white rounded-full bg-violet-950 px-7 hover:bg-indigo-700">Pengumuman Rektor UIN SUSKA Riau</a>
                 </div>
             </div>
             <div class="flex flex-row items-center justify-center object-scale-down p-5">
