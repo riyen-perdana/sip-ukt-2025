@@ -88,7 +88,7 @@
         <p class="text-sm leading-normal text-justify text-indigo-950">Penyesuaian Uang Kuliah Tunggal (UKT) merupakan mekanisme yang
             disediakan oleh UIN Sultan Syarif Kasim Riau kepada Mahasiswa yang mengalami perubahan kondisi ekonomi dan
             kemampuan Keuangan. Untuk mengajukan perubahan besaran Uang Kuliah Tunggal (UKT), Prosedur Penyesuaian Uang
-            Kuliah Tunggal (UKT) Tahun @phpecho date('Y');
+            Kuliah Tunggal (UKT) Tahun @php echo date('Y');
 
             @endphp adalah :</p>
         <ol class="pl-3 text-sm leading-normal text-justify list-decimal text-indigo-950">
