@@ -139,7 +139,7 @@
                 </ul>
             </li>
             <li>
-                Penyesuaian UKT berlaku mulai Semester Ganjil Tahun Akademik 2024/2025.
+                Penyesuaian UKT berlaku mulai Semester Ganjil Tahun Akademik 2025/2026.
             </li>
             <li>
                 Penyesuaian UKT hanya berlaku bagi mahasiswa yang berada pada UKT 5,6,7 dan jika disetujui akan diturunkan
